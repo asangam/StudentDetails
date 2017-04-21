@@ -73,7 +73,7 @@
 			 	<td><?php echo $s_name; ?></td>
 			 	<td><?php echo $school_name; ?></td>
 			 	<td><?php echo $roll_no; ?></td>
-			 	<td><?php $s_result; ?></td>
+			 	<td><?php echo $s_result; ?></td>
 			 	<td><a href="delete.php?del=<?php echo $id;?>" >Delete </a> </td>
 			 	<td><a href="edit.php?edit=<?php echo $id;?>" >Edit</a></td>
 

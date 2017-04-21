@@ -7,9 +7,10 @@ $query="select * from students where id='$edit_record'";
 $run=mysql_query($query);
 while($row=mysql_fetch_array($run))
 {
+	$edit_id=$row['id'];
 	$s_name=$row['student_name'];
 	$school_name=$row['school_name'];
-	$roll_no=$row['roll_no'];
+	$roll_no=$row['roll_no']; //there are the name of the forms name after row
 	$result=$row['result'];
 }
 
@@ -20,7 +21,8 @@ while($row=mysql_fetch_array($run))
 		<title>Student Details</title>
 	</head>
 	<body>
-		<form action="data.php" method="post">
+
+		<form action="edit.php?edit_form=<?php echo $edit_id; ?>" method="post">
 		<table border="44px" width="500px" align="center">
 			<tr>
 				<td colspan="2" bgcolor="teal">
@@ -59,3 +61,23 @@ while($row=mysql_fetch_array($run))
 		</form>
 		</body>
 		</html>
+		
+		<?php 
+			mysql_connect("localhost","root","");
+			mysql_select_db("college");
+
+			if(isset($_POST['update']))
+			{
+				$edit_id=$_GET['edit_form'];
+				$name=$_POST['name'];
+				$school=$_POST['school'];
+				$roll=$_POST['rollno'];
+				$result=$_POST['result'];
+
+				$query1="update students set student_name='$name',school_name='$school',roll_no='$roll',result='$result' where id='$edit_id'";
+				 if(mysql_query($query1))
+				 {
+				 	echo " <script>window.open('firstdbCollege.php','_self') </script>";
+				 }
+			}
+		 ?>
